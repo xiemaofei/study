@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    #app span{
+        background: orange;
+        color: #fff;
+    }
+
+   </style>
+    <title>Document</title>
+</head>
+<body>
+   
+    <div id="app">
+        <!-- {{name.split('').join('-')}} -->
+        <!-- {{name? '有' : '没有'}} -->
+           <!-- {{obj}}   -->
+          <p v-if="name">我们不一样 v-if</p>
+          <h6 v-else>v-else</h6>
+        <!-- <button v-on:click = "fn()">按钮</button>  -->
+        <button v-on:click = "focusChange()">按钮</button>
+        <h5>{{name}}</h5>
+        <input type="text" v-model="str" v-on:keyup.enter = "focusChange">
+        <!-- <ul>
+            <li v-for="(val,key,index) in obj">{{index}}.{{key}}:{{val}}</li>
+        </ul> -->
+        <ul>
+            <li v-for="(val,i) in arr">{{val}}
+              <span v-on:click="dele(i)">X</span>  
+            </li>
+            
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const vue=new Vue({
+            el:'#app',
+            data:{
+                name: "yutian",
+                str:'',
+                obj: {
+                    age:10,
+                    sex:'女'
+                },
+                arr:[1, 2, 3, 4, 5]
+            },
+            methods: {
+                fn () {
+                  // console.log(this)
+                  //alert(num)
+                  this.name = ! this.name;
+                },
+                focusChange () {
+                    this.arr.push(this.str);
+                    this.str = '';
+                    console.log(this)
+                },
+                dele (i) {
+                    this.arr.splice(i,1);
+                }
+            }
+            
+           
+        })
+      console.log(vue);
+    </script>
+</body>
+</html>
